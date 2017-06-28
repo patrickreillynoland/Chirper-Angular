@@ -1,0 +1,18 @@
+<div id="entry">
+    <input id="input" placeholder="Whatcha gonna Chirp?">
+    <select id="user-dropdown">Select User</select>
+</div>
+<ul class="no-dot">
+    <li ng-repeat="chirp in chirps">
+        <div class="chirp">
+            <p class="message">{{ chirp.message }}</p>
+            <h3 class="user">{{ chirp.userName }}</h3>
+            <h5 class="timestamp">{{ chirp.timestamp }}</h5>
+            <div class="button-block">
+                <button class="buttons" id="update">Edit</button>
+                <button class="buttons" id="delete">Delete</button>
+            </div>
+            <hr />
+        </div>
+    </li>
+</ul>

@@ -24,20 +24,27 @@ angular.module('Chirper', ['ngRoute'])
 .controller('WelcomeController', ['$scope', function($scope) {
 
 }])
-.controller('AllChirps', ['$scope', '$routeParams', '$http', function($scope, $routeParams, $http) {
-    $http({
-        url: '/api/chirps/',
-        method: 'GET'
-    }).then(function (payload) {
-        $scope.message = payload.data.message;
-        $scope.user = payload.data.user;
-        $scope.timestamp = payload.data.timestamp;
-    }, function (err) {
+.controller('AllChirps', ['$scope', '$http', function($scope, $http) {
+    function getChirps() {
+        $http.get('/api/chirps/')
+        .then(function success(res) {
+            $scope.chirps = res.data;
+            $scope.message = res.data.message;
+            $scope.timestamp = res.data.timestamp;
+            $scope.userName = res.data.userName;
+        }, function(err) {
+            console.log(err);
+        });
+    }
+    getChirps();
+}])
+.controller('OneChirp', ['$scope', '$routeParams', '$http', function($scope, $routeParams, $http) {
+    $http.get('/api/chirps/' + $routeParams.id)
+    .then(function success(res) {
+        console.log(res);
+    }, function(err) {
         console.log(err);
     });
-}])
-.controller('OneChirp', ['$scope', '$routeParams', '$http',function($scope, $routeParams, $http) {
-
 }])
 .controller('ChirpUpdate', ['$scope', '$routeParams', '$http', function($scope, $routeParams, $http) {
 
