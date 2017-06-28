@@ -1,9 +1,9 @@
 <div class="chirp">
     <p class="message">Message: {{ message }}</p>
-    <h4 class="user">User: {{ user }}</h4>
+    <h4 class="user">User: {{ userName }}</h4>
     <h5 class="timestamp">Timestamp: {{ timestamp }}</h5>
     <div class="button-block">
         <button class="buttons" ng-click="updateChirp">Edit</button>
-        <button class="buttons" ng-click="deleteChirp">Delete</button>
+        <button class="buttons" ng-click="deleteChirp()">Delete</button>
     </div>
 </div>

@@ -38,10 +38,24 @@ angular.module('Chirper', ['ngRoute'])
     }
     getChirps();
 }])
-.controller('OneChirp', ['$scope', '$routeParams', '$http', function($scope, $routeParams, $http) {
+.controller('OneChirp', ['$scope', '$routeParams', '$location', '$http', function($scope, $routeParams, $location, $http) {
     $http.get('/api/chirps/' + $routeParams.id)
     .then(function success(res) {
-        console.log(res);
+        $scope.id = $routeParams.id;
+        $scope.message = res.data.message;
+        $scope.timestamp = res.data.timestamp;
+        $scope.userName = res.data.userName;
+        $scope.deleteChirp = function(id) {
+            $http({
+                method: 'DELETE',
+                url: '/api/chirps/' + $routeParams.id
+            }).then(function success(res) {
+                $location.path("/chirps");
+                alert('Chirp removed');
+            }, function(err) {
+                console.log(err);
+            });
+        }
     }, function(err) {
         console.log(err);
     });

@@ -1,18 +1,22 @@
 <div id="entry">
     <input id="input" placeholder="Whatcha gonna Chirp?">
-    <select id="user-dropdown">Select User</select>
+    <select id="user-dropdown">
+        <option value="">Select User:</option>
+    </select>
 </div>
 <ul class="no-dot">
     <li ng-repeat="chirp in chirps">
-        <div class="chirp">
+        <a ng-href="/#!/chirps/{{chirp.id}}">
+        <div class="chirp" ng-click="goToChirp()">
             <p class="message">{{ chirp.message }}</p>
             <h3 class="user">{{ chirp.userName }}</h3>
             <h5 class="timestamp">{{ chirp.timestamp }}</h5>
+        </div>
+        </a>
             <div class="button-block">
                 <button class="buttons" id="update">Edit</button>
                 <button class="buttons" id="delete">Delete</button>
             </div>
             <hr />
-        </div>
     </li>
 </ul>
