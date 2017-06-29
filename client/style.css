@@ -1,10 +1,50 @@
+/*ELEMENTS*/
+
+p,
+h1,
+h3,
+h5 {
+    font-family: 'Poppins', sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* CLASSES */
 .no-dot {
     list-style: none;
 }
 
+.chirp {
+    width: 50%;
+}
+
+.chirp-list {
+    padding: 10px 30px 20px;
+    border: 2px solid grey;
+    margin-bottom: 10px;
+    width: 90%;
+}
+
+/* IDs */
+#welcome {
+    display: block;
+    position: relative;
+    text-align: center;
+}
+
+#welcome-text {
+    text-align: center;
+    font-size: 52px;
+}
+
+#proceed {
+    padding: 5px 10px 5px;
+}
 #entry {
     position: relative;
-    padding-left: 5%
+    padding-left: 40%
 }
 
 #chirp-list {

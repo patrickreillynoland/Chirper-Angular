@@ -1,22 +1,22 @@
 <div id="entry">
-    <input id="input" placeholder="Whatcha gonna Chirp?">
-    <select id="user-dropdown">
-        <option value="">Select User:</option>
+    <input id="input" placeholder="Whatcha gonna Chirp?" ng-model="NewMessage">
+    <select id="user-dropdown" ng-model="NewName">
+        <option ng-repeat="u in users" for="{{ u.name }}">{{ u.name }}</option>
     </select>
+    <button id="submit" ng-click="createChirp()">Post Chirp</button>
 </div>
 <ul class="no-dot">
-    <li ng-repeat="chirp in chirps">
+    <li ng-repeat="chirp in chirps" class="chirp-list">
         <a ng-href="/#!/chirps/{{chirp.id}}">
         <div class="chirp" ng-click="goToChirp()">
-            <p class="message">{{ chirp.message }}</p>
-            <h3 class="user">{{ chirp.userName }}</h3>
-            <h5 class="timestamp">{{ chirp.timestamp }}</h5>
+            <p class="message">"{{ chirp.message }}"</p>
+            <h3 class="user">@{{ chirp.userName }}</h3>
+            <h5 class="timestamp">{{ chirp.timestamp | date:'medium' }}</h5>
         </div>
         </a>
             <div class="button-block">
                 <button class="buttons" id="update">Edit</button>
                 <button class="buttons" id="delete">Delete</button>
             </div>
-            <hr />
     </li>
 </ul>

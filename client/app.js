@@ -1,4 +1,4 @@
-angular.module('Chirper', ['ngRoute'])
+angular.module('Chirper', ['ngRoute', 'ngResource', 'Chirper.controllers', 'Chirper.factories', 'Chirper.services'])
 .config(['$routeProvider', function($routeProvider) {
     $routeProvider
     .when('/', {
@@ -20,46 +20,4 @@ angular.module('Chirper', ['ngRoute'])
     .otherwise({
         redirectTo: '/'
     });
-}])
-.controller('WelcomeController', ['$scope', function($scope) {
-
-}])
-.controller('AllChirps', ['$scope', '$http', function($scope, $http) {
-    function getChirps() {
-        $http.get('/api/chirps/')
-        .then(function success(res) {
-            $scope.chirps = res.data;
-            $scope.message = res.data.message;
-            $scope.timestamp = res.data.timestamp;
-            $scope.userName = res.data.userName;
-        }, function(err) {
-            console.log(err);
-        });
-    }
-    getChirps();
-}])
-.controller('OneChirp', ['$scope', '$routeParams', '$location', '$http', function($scope, $routeParams, $location, $http) {
-    $http.get('/api/chirps/' + $routeParams.id)
-    .then(function success(res) {
-        $scope.id = $routeParams.id;
-        $scope.message = res.data.message;
-        $scope.timestamp = res.data.timestamp;
-        $scope.userName = res.data.userName;
-        $scope.deleteChirp = function(id) {
-            $http({
-                method: 'DELETE',
-                url: '/api/chirps/' + $routeParams.id
-            }).then(function success(res) {
-                $location.path("/chirps");
-                alert('Chirp removed');
-            }, function(err) {
-                console.log(err);
-            });
-        }
-    }, function(err) {
-        console.log(err);
-    });
-}])
-.controller('ChirpUpdate', ['$scope', '$routeParams', '$http', function($scope, $routeParams, $http) {
-
 }])
